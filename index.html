@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:400,700">
+    <link rel="stylesheet" type="text/css" href="styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+  </head>
+  <body>
+    <main>
+      <div>
+        <div id="loader"></div>
+        <div id="weather-container" class="hidden">
+          <img src="#" id="condition-image" alt="Condition image">
+          <div id="location"></div>
+          <div id="current-condition"></div>
+          <div id="temperature-container">
+            <span id="temperature"></span>
+            <input id="celsius" type="radio" name="unit" value="c" checked>
+            <label for="celsius">C</label>
+            <input id="fahrenheit" type="radio" name="unit" value="f">
+            <label for="fahrenheit">F</label>
+          </div>
+          <table id="forecast-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th></th>
+                <th>High</th>
+                <th>Low</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="day-0">
+                <td class="day"></td>
+                <td><img src="#" class="forecast-thumbnail" alt="Forecast thumbnail"></td>
+                <td class="high"></td>
+                <td class="low"></td>
+              </tr>
+              <tr id="day-1">
+                <td class="day"></td>
+                <td><img src="#" class="forecast-thumbnail" alt="Forecast thumbnail"></td>
+                <td class="high"></td>
+                <td class="low"></td>
+              </tr>
+              <tr id="day-2">
+                <td class="day"></td>
+                <td><img src="#" class="forecast-thumbnail" alt="Forecast thumbnail"></td>
+                <td class="high"></td>
+                <td class="low"></td>
+              </tr>
+              <tr id="day-3">
+                <td class="day"></td>
+                <td><img src="#" class="forecast-thumbnail" alt="Forecast thumbnail"></td>
+                <td class="high"></td>
+                <td class="low"></td>
+              </tr>
+              <tr id="day-4">
+                <td class="day"></td>
+                <td><img src="#" class="forecast-thumbnail" alt="Forecast thumbnail"></td>
+                <td class="high"></td>
+                <td class="low"></td>
+              </tr>
+              <tr id="day-5">
+                <td class="day"></td>
+                <td><img src="#" class="forecast-thumbnail" alt="Forecast thumbnail"></td>
+                <td class="high"></td>
+                <td class="low"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>

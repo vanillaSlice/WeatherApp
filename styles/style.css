@@ -1,0 +1,51 @@
+/*
+
+
+#loader {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: solid 10px #fff;
+  border-top: solid 10px #74aaec;
+  animation-name: rotate;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  margin: 50px auto;
+}
+
+@keyframes rotate {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(360deg)}
+}
+
+.hidden {
+  display: none;
+}*/
+
+input[type=radio] {
+  display: none;
+}
+
+input:hover,
+label:hover {
+  cursor: pointer;
+}
+
+body {
+  background-color: #488ee6;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 36px;
+  color: white;
+  text-align: center;
+}
+#weather-container {
+  background-color: #74aaec;
+  width: 60%;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+thead {
+  font-weight: bold;
+}
