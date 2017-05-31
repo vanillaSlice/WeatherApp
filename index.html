@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Weather App</title>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:400,700">
     <link rel="stylesheet" type="text/css" href="styles/reset.css">
@@ -12,9 +12,6 @@
       <div id="container">
         <div id="loader"></div>
         <div id="weather-container" class="hidden">
-          <img src="#" id="condition-image" alt="Condition image">
-          <div id="location"></div>
-          <div id="current-condition"></div>
           <div id="temperature-container">
             <span id="temperature"></span>
             <input id="celsius" type="radio" name="unit" value="c" checked>
@@ -22,6 +19,9 @@
             <input id="fahrenheit" type="radio" name="unit" value="f">
             <label for="fahrenheit">F</label>
           </div>
+          <span id="city"></span>
+          <span id="country"></span>
+          <span id="current-condition"></span>
           <table id="forecast-table">
             <thead>
               <tr>

@@ -37,10 +37,14 @@ $(document).ready(function () {
   
   function handleSimpleWeatherSuccess(data) {
     weather = data;
-    $("#condition-image").attr({title: weather.currently, src: weather.image});
-    $("#location").html(weather.city + "," + weather.country);
-    $("#current-condition").html(weather.currently);
+    // change current day name
+    weather.forecast[0].day = "Today";
+    $("#temperature-container").css("background-image",
+                                    "url(" + weather.image + ")");
     setCurrentTemperature();
+    $("#city").html(weather.city);
+    $("#country").html(weather.country);
+    $("#current-condition").html(weather.currently);
     setForecast();
     $("#loader").addClass("hidden");
     $("#weather-container").addClass("fade-in").removeClass("hidden");

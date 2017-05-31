@@ -9,7 +9,7 @@ body {
   font-family: 'Quicksand', sans-serif;
   background-color: #488ee6;
   color: #fff;
-  padding: 0 0.938em;
+  padding: 0 20px;
   word-wrap: break-word;
 }
 
@@ -38,13 +38,21 @@ main {
 }
 
 @-webkit-keyframes fade-in {
-  from {opacity: 0};
-  to {opacity: 1};
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fade-in {
-  from {opacity: 0};
-  to {opacity: 1};
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -76,9 +84,22 @@ main {
   width: 100%;
 }
 
-/*done up to here*/
+#loader {
+  border-radius: 50%;
+  border: solid 10px #fff;
+  border-top: solid 10px #74aaec;
+  border-bottom: solid 10px #74aaec;
+  -webkit-animation-name: rotate;
+  animation-name: rotate;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  margin: 0 auto;
+}
 
-/* loader styles */
 @media (min-width: 576px) {
   #loader {
     width: 75px;
@@ -94,74 +115,98 @@ main {
   }
 }
 
-#loader {
-  border-radius: 50%;
-  border: solid 10px #fff;
-  border-top: solid 10px #74aaec;
-  border-bottom: solid 10px #74aaec;
-  animation-name: rotate;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  margin: 50px auto;
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes rotate {
-  0% {transform: rotate(0deg)}
-  100% {transform: rotate(360deg)}
-}
-
-/*
-
-
-#loader {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  border: solid 10px #fff;
-  border-top: solid 10px #74aaec;
-  animation-name: rotate;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  margin: 50px auto;
-}
-
-@keyframes rotate {
-  0% {transform: rotate(0deg)}
-  100% {transform: rotate(360deg)}
-}
-
-.hidden {
-  display: none;
-}*/
-
-input[type="radio"]:checked + label {
-  background-color: white;
-  color: #74aaec;
-}
-  
-label, input {
-  padding: 10px;
-  border-radius: 5px;
-}
-
-input[type=radio] {
-  display: none;
-}
-
-input:hover,
-label:hover {
-  cursor: pointer;
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 #weather-container {
   background-color: #74aaec;
   padding: 20px;
-  margin: 0.938em 0;
+  margin: 20px 0;
+  border-radius: 5px;
+  overflow-x: auto;
 }
 
-thead {
+#temperature-container {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#temperature {
+  font-size: 64px;
+}
+
+#temperature-container input[name="unit"] {
+  display: none;
+}
+
+#temperature-container label:hover {
+  cursor: pointer;
+}
+
+#temperature-container input[name="unit"]:checked + label,
+#temperature-container label:hover {
+  border-bottom: solid 2px #fff;
+}
+  
+#temperature-container > label {
+  padding: 5px;
+}
+
+#city,
+#country,
+#current-condition {
+  display: block;
+}
+
+#city {
+  margin-top: 10px;
+  font-size: 32px;
+}
+
+#country {
+  font-size: 14px;
+}
+
+#current-condition {
+  margin-top: 10px;
+}
+
+#forecast-table {
+  width: 80%;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 5px;
+}
+
+#forecast-table td,
+#forecast-table th {
+  vertical-align: middle;
+}
+
+#forecast-table thead {
   font-weight: bold;
 }
 
