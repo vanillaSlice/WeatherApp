@@ -58,7 +58,7 @@ main {
 @media (min-width: 1200px) {
   main {
     width: 1140px;
-  } 
+  }
 }
 
 @media (min-width: 992px) {
@@ -163,12 +163,12 @@ main {
   cursor: pointer;
 }
 
-#temperature-container input[name="unit"]:checked + label,
+#temperature-container input[name="unit"]:checked+label,
 #temperature-container label:hover {
   border-bottom: solid 2px #fff;
 }
-  
-#temperature-container > label {
+
+#temperature-container>label {
   padding: 5px;
 }
 
