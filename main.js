@@ -40,21 +40,21 @@ $(document).ready(function () {
     weather = data;
     // change current day name
     weather.forecast[0].day = "Today";
-    $("#temperature-container").css("background-image",
+    $(".temperature-container").css("background-image",
       "url(" + weather.image + ")");
     setCurrentTemperature();
-    $("#city").html(weather.city);
-    $("#country").html(weather.country);
-    $("#current-condition").html(weather.currently);
+    $(".weather-panel__city").html(weather.city);
+    $(".weather-panel__country").html(weather.country);
+    $(".weather-panel__current-condition").html(weather.currently);
     setForecast();
-    $("#loader").addClass("hidden");
-    $("#weather-container").addClass("fade-in").removeClass("hidden");
+    $(".loader").addClass("hidden");
+    $(".weather-panel").addClass("fade-in").removeClass("hidden");
   }
 
   function setCurrentTemperature() {
     var currentTemperature = (unit === defaultUnit) ? weather.temp :
       weather.alt.temp;
-    $("#temperature").html(currentTemperature + "&deg;");
+    $(".temperature-container__temperature").html(currentTemperature + "&deg;");
   }
 
   function setForecast() {
