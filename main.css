@@ -9,6 +9,7 @@ body {
   font-family: 'Quicksand', sans-serif;
   background-color: #488ee6;
   color: #fff;
+  line-height: initial;
   padding: 0 20px;
   word-wrap: break-word;
 }
