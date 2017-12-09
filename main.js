@@ -1,13 +1,29 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
-  "use strict";
+  'use strict';
 
-  var geolocation = navigator.geolocation,
-    container = $("#container"),
-    defaultUnit = $("input[name='unit']:checked").val(),
-    unit = defaultUnit,
-    weather,
-    daysForecast = 5;
+  var geolocation = navigator.geolocation;
+  var defaultUnit = 'c';
+  var currentUnit = defaultUnit;
+  var currentWeather;
+  var daysToForecast = 5;
+
+  /*
+   * DOM elements.
+   */
+  var bodyElement = $(document.body);
+  var loaderElement = $('.loader');
+  var weatherPanelElement = $('.weather-panel');
+  var temperatureContainerElement = $('.temperature-container');
+  var temperatureElement = $('.temperature-container__temperature');
+  var unitElements = $('.temperature-container__unit');
+  var cityElement = $('.weather-panel__city');
+  var countryElement = $('.weather-panel__country');
+  var currentConditionElement = $('.weather-panel__current-condition');
+
+  function displayErrorMessage(message) {
+    bodyElement.html('<p class="error-message">' + message + '</p>');
+  }
 
   if (!geolocation) {
     handleUnsupportedGeolocation();
@@ -16,77 +32,86 @@ $(document).ready(function () {
   }
 
   function handleUnsupportedGeolocation() {
-    container.html("Geolocation is not supported by this browser");
+    displayErrorMessage('Geolocation is not supported by this browser');
   }
 
   function handleSupportedGeolocation() {
-    geolocation.getCurrentPosition(handleGetCurrentPositionSuccess,
-      handleGetCurrentPositionError, {
-        enableHighAccuracy: true
-      });
+    geolocation.getCurrentPosition(
+      handleGetCurrentPositionSuccess,
+      handleGetCurrentPositionError,
+      { enableHighAccuracy: true }
+    );
   }
 
   function handleGetCurrentPositionSuccess(position) {
     var coords = position.coords;
     $.simpleWeather({
-      location: coords.latitude + "," + coords.longitude,
-      unit: unit,
+      location: coords.latitude + ',' + coords.longitude,
+      unit: currentUnit,
       success: handleSimpleWeatherSuccess,
       error: handleSimpleWeatherError
     });
   }
 
   function handleSimpleWeatherSuccess(data) {
-    weather = data;
+    currentWeather = data;
+
     // change current day name
-    weather.forecast[0].day = "Today";
-    $(".temperature-container").css("background-image",
-      "url(" + weather.image + ")");
+    currentWeather.forecast[0].day = 'Today';
+    
+    temperatureContainerElement.css('background-image', 'url(' + currentWeather.image + ')');
+    
     setCurrentTemperature();
-    $(".weather-panel__city").html(weather.city);
-    $(".weather-panel__country").html(weather.country);
-    $(".weather-panel__current-condition").html(weather.currently);
+
+    cityElement.html(currentWeather.city);
+    countryElement.html(currentWeather.country);
+    currentConditionElement.html(currentWeather.currently);
+    
     setForecast();
-    $(".loader").addClass("hidden");
-    $(".weather-panel").addClass("fade-in").removeClass("hidden");
+    
+    // hide loader
+    loaderElement.addClass('hidden');
+
+    // show weather panel
+    weatherPanelElement.addClass('fade-in').removeClass('hidden');
   }
 
   function setCurrentTemperature() {
-    var currentTemperature = (unit === defaultUnit) ? weather.temp :
-      weather.alt.temp;
-    $(".temperature-container__temperature").html(currentTemperature + "&deg;");
+    var currentTemperature = (currentUnit === defaultUnit) ? currentWeather.temp : currentWeather.alt.temp;
+    temperatureElement.html(currentTemperature + '&deg;');
   }
 
   function setForecast() {
-    for (var i = 0; i <= daysForecast; i++) {
-      var forecast = (unit === defaultUnit) ? weather.forecast[i] :
-        weather.forecast[i].alt;
-      var dayId = "#day-" + i;
-      $(dayId + " .day").html(forecast.day);
-      $(dayId + " .forecast-thumbnail").attr({
+    for (var i = 0; i <= daysToForecast; i++) {
+      var forecast = (currentUnit === defaultUnit) ? currentWeather.forecast[i] : currentWeather.forecast[i].alt;
+      var dayId = '#day-' + i;
+      $(dayId + ' .forecast-table__day').html(forecast.day);
+      $(dayId + ' .forecast-table__thumbnail').attr({
         title: forecast.text,
         src: forecast.thumbnail
       });
-      $(dayId + " .high").html(forecast.high + "&deg;");
-      $(dayId + " .low").html(forecast.low + "&deg;");
+      $(dayId + ' .forecast-table__high').html(forecast.high + '&deg;');
+      $(dayId + ' .forecast-table__low').html(forecast.low + '&deg;');
     }
   }
 
   function handleSimpleWeatherError(error) {
-    container.html(error);
+    displayErrorMessage(error);
   }
 
   function handleGetCurrentPositionError(error) {
-    container.html("Could not get current position: " + error.message);
+    displayErrorMessage('Could not get current position: ' + error.message);
   }
 
-  $("input[name='unit']").click(function () {
+  unitElements.click(function() {
     // only update temperatures if unit is different
-    if (unit !== this.value) {
-      unit = this.value;
-      setCurrentTemperature();
-      setForecast();
+    if (currentUnit == this.value) {
+      return;
     }
+
+    currentUnit = this.value;
+    setCurrentTemperature();
+    setForecast();
   });
 
 });
