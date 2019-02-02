@@ -1,11 +1,4 @@
 /*
-  Colours:
-    Blue  - #74aaec
-    Grey  - #9cc4ee
-    White - #fff
-*/
-
-/*
  * Standard styles.
  */
 
@@ -129,8 +122,8 @@ body {
   padding: 0.3125rem;
 }
 
-.temperature-container__unit:checked + .temperature-container__label,
-.temperature-container__label:hover {
+.temperature-container__label:hover,
+.temperature-container__unit:checked + .temperature-container__label {
   border-bottom: solid 0.125rem #fff;
 }
 
