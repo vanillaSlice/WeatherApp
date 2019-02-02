@@ -144,3 +144,8 @@ body {
 .forecast-table__thumbnail {
   height: 3rem;
 }
+
+.attribution {
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
