@@ -3,7 +3,7 @@
  */
 
 const apiKey = '1848f6048f074277990152812190202';
-const baseUrl = 'http://api.apixu.com/v1/forecast.json';
+const baseUrl = 'https://api.apixu.com/v1/forecast.json';
 const { geolocation } = navigator;
 const defaultUnit = 'c';
 const daysToForecast = 6;
