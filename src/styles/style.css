@@ -1,6 +1,28 @@
-/*
- * Standard styles.
- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
   height: 100%;
@@ -17,36 +39,13 @@ body {
   word-wrap: break-word;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/*
- * Helpers.
- */
-
 .fade-in {
   animation: fade-in 2s linear;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .hidden {
   display: none;
 }
-
-/*
- * Specific styles.
- */
 
 .loader {
   animation: rotate 2s linear infinite;
@@ -59,13 +58,9 @@ body {
   width: 5.9375rem;
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.error-message {
+  margin: auto;
+  text-align: center;
 }
 
 .weather-panel {
@@ -77,9 +72,20 @@ body {
 }
 
 .temperature-container {
+  position: relative;
+}
+
+.temperature-container__image {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
 }
 
 .temperature-container__temperature {
@@ -96,7 +102,7 @@ body {
 }
 
 .temperature-container__label:hover,
-.temperature-container__unit:checked + .temperature-container__label {
+.temperature-container__unit:checked+.temperature-container__label {
   border-bottom: solid 0.125rem #fff;
 }
 
@@ -119,12 +125,12 @@ body {
 .forecast-table {
   border-collapse: separate;
   border-spacing: 0.3125rem;
-  margin-top: 0.625rem;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0.625rem;
   max-width: 25rem;
   text-align: center;
-  width: 100%;  
+  width: 100%;
 }
 
 .forecast-table__head {
@@ -135,7 +141,6 @@ body {
   vertical-align: middle;
 }
 
-.error-message {
-  margin: auto;
-  text-align: center;
+.forecast-table__thumbnail {
+  height: 3rem;
 }
