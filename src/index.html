@@ -17,25 +17,26 @@
   <meta name="msapplication-config" content="./browserconfig.xml">
   <meta name="msapplication-TileColor" content="#00aba9">
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:400,700">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-  <link rel="stylesheet" type="text/css" href="./styles/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha256-gvEnj2axkqIj4wbYhPjbWV7zttgpzBVEgHub9AAZQD4="
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="./styles/style.css">
 </head>
 
-<body class="fade-in">
-  <div class="loader"></div>
+<body class="fade-in js-body">
+  <div class="loader js-loader"></div>
 
-  <div class="weather-panel hidden">
-    <div class="temperature-container">
-      <span class="temperature-container__temperature"></span>
-      <input class="temperature-container__unit" id="celsius" type="radio" name="unit" value="c" checked>
+  <div class="weather-panel hidden js-weather-panel">
+    <div class="temperature-container js-temperature-container">
+      <span class="temperature-container__temperature js-temperature"></span>
+      <input class="temperature-container__unit js-unit" id="celsius" type="radio" name="unit" value="c" checked>
       <label class="temperature-container__label" for="celsius">C</label>
-      <input class="temperature-container__unit" id="fahrenheit" type="radio" name="unit" value="f">
+      <input class="temperature-container__unit js-unit" id="fahrenheit" type="radio" name="unit" value="f">
       <label class="temperature-container__label" for="fahrenheit">F</label>
     </div>
-    <span class="weather-panel__city"></span>
-    <span class="weather-panel__country"></span>
-    <span class="weather-panel__current-condition"></span>
+    <span class="weather-panel__city js-city"></span>
+    <span class="weather-panel__country js-country"></span>
+    <span class="weather-panel__current-condition js-current-condition"></span>
     <table class="forecast-table">
       <thead class="forecast-table__head">
         <tr class="forecast-table__row">
@@ -46,60 +47,60 @@
         </tr>
       </thead>
       <tbody class="forecast-table__body">
-        <tr class="forecast-table__row" id="day-0">
-          <td class="forecast-table__cell forecast-table__day"></td>
+        <tr class="forecast-table__row js-day-0">
+          <td class="forecast-table__cell forecast-table__day js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail" alt="Forecast thumbnail">
+            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
           </td>
-          <td class="forecast-table__cell forecast-table__high"></td>
-          <td class="forecast-table__cell forecast-table__low"></td>
+          <td class="forecast-table__cell forecast-table__high js-high"></td>
+          <td class="forecast-table__cell forecast-table__low js-low"></td>
         </tr>
-        <tr class="forecast-table__row" id="day-1">
-          <td class="forecast-table__cell forecast-table__day"></td>
+        <tr class="forecast-table__row js-day-1">
+          <td class="forecast-table__cell forecast-table__day js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail" alt="Forecast thumbnail">
+            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
           </td>
-          <td class="forecast-table__cell forecast-table__high"></td>
-          <td class="forecast-table__cell forecast-table__low"></td>
+          <td class="forecast-table__cell forecast-table__high js-high"></td>
+          <td class="forecast-table__cell forecast-table__low js-low"></td>
         </tr>
-        <tr class="forecast-table__row" id="day-2">
-          <td class="forecast-table__cell forecast-table__day"></td>
+        <tr class="forecast-table__row js-day-2">
+          <td class="forecast-table__cell forecast-table__day js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail" alt="Forecast thumbnail">
+            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
           </td>
-          <td class="forecast-table__cell forecast-table__high"></td>
-          <td class="forecast-table__cell forecast-table__low"></td>
+          <td class="forecast-table__cell forecast-table__high js-high"></td>
+          <td class="forecast-table__cell forecast-table__low js-low"></td>
         </tr>
-        <tr class="forecast-table__row" id="day-3">
-          <td class="forecast-table__cell forecast-table__day"></td>
+        <tr class="forecast-table__row js-day-3">
+          <td class="forecast-table__cell forecast-table__day js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail" alt="Forecast thumbnail">
+            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
           </td>
-          <td class="forecast-table__cell forecast-table__high"></td>
-          <td class="forecast-table__cell forecast-table__low"></td>
+          <td class="forecast-table__cell forecast-table__high js-high"></td>
+          <td class="forecast-table__cell forecast-table__low js-low"></td>
         </tr>
-        <tr class="forecast-table__row" id="day-4">
-          <td class="forecast-table__cell forecast-table__day"></td>
+        <tr class="forecast-table__row js-day-4">
+          <td class="forecast-table__cell forecast-table__day js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail" alt="Forecast thumbnail">
+            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
           </td>
-          <td class="forecast-table__cell forecast-table__high"></td>
-          <td class="forecast-table__cell forecast-table__low"></td>
+          <td class="forecast-table__cell forecast-table__high js-high"></td>
+          <td class="forecast-table__cell forecast-table__low js-low"></td>
         </tr>
-        <tr class="forecast-table__row" id="day-5">
-          <td class="forecast-table__cell forecast-table__day"></td>
+        <tr class="forecast-table__row js-day-5">
+          <td class="forecast-table__cell forecast-table__day js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail" alt="Forecast thumbnail">
+            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
           </td>
-          <td class="forecast-table__cell forecast-table__high"></td>
-          <td class="forecast-table__cell forecast-table__low"></td>
+          <td class="forecast-table__cell forecast-table__high js-high"></td>
+          <td class="forecast-table__cell forecast-table__low js-low"></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
   <script src="./scripts/index.js"></script>
 </body>
 

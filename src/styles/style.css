@@ -9,8 +9,6 @@ html {
 body {
   background-color: #74aaec;
   color: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   font-family: 'Quicksand', sans-serif;
   height: 100%;
@@ -22,8 +20,7 @@ body {
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /*
@@ -31,17 +28,7 @@ body {
  */
 
 .fade-in {
-  -webkit-animation: fade-in 2s linear;
-          animation: fade-in 2s linear;
-}
-
-@-webkit-keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  animation: fade-in 2s linear;
 }
 
 @keyframes fade-in {
@@ -62,8 +49,7 @@ body {
  */
 
 .loader {
-  -webkit-animation: rotate 2s linear infinite;
-          animation: rotate 2s linear infinite;
+  animation: rotate 2s linear infinite;
   border: solid 0.625rem #fff;
   border-top: solid 0.625rem #9cc4ee;
   border-bottom: solid 0.625rem #9cc4ee;
@@ -73,25 +59,12 @@ body {
   width: 5.9375rem;
 }
 
-@-webkit-keyframes rotate {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
 @keyframes rotate {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
