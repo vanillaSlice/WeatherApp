@@ -145,9 +145,15 @@ body {
   height: 3rem;
 }
 
-.attribution {
-  font-size: 0.875rem;
+.footer {
+  font-size: 0.75rem;
   margin-top: 1rem;
+  text-align: center;
+}
+
+.footer__separator::after {
+  content: '|';
+  margin: 0 0.5rem;
 }
 
 /*

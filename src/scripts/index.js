@@ -1,3 +1,5 @@
+import { version } from '../../package.json';
+
 /*
  * Constants
  */
@@ -37,6 +39,7 @@ const unitElements = $('.js-unit');
 const cityElement = $('.js-city');
 const countryElement = $('.js-country');
 const currentConditionElement = $('.js-current-condition');
+const versionElement = $('.js-version');
 
 /*
  * Functions
@@ -138,3 +141,4 @@ if (!geolocation) {
 }
 
 unitElements.click(handleUnitChange);
+versionElement.text(`v${version}`);
