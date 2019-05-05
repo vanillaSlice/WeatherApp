@@ -7,7 +7,7 @@
 *Intermediate Front End Development Project for FreeCodeCamp.*
 
 A simple weather app. A deployed version can be viewed
-[here](https://vanillaslice.github.io/WeatherApp/).
+[here](https://weatherapp.mikelowe.xyz/).
 
 ## Screenshot
 
