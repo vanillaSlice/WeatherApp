@@ -4,11 +4,12 @@ import { version } from '../../package.json';
  * Constants
  */
 
-const apiKey = '1848f6048f074277990152812190202';
-const baseUrl = 'https://api.apixu.com/v1/forecast.json';
+const darkSkyUrl = 'https://api.darksky.net/forecast/63b249ea29dd4b09ae0118ebe17b4499';
+const darkSkyExclusions = 'minutely,hourly,alerts,flags';
+const darkSkyUnits = 'si';
 const { geolocation } = navigator;
 const defaultUnit = 'c';
-const daysToForecast = 6;
+const daysToForecast = 7;
 const dayNames = [
   'Sun',
   'Mon',
@@ -33,7 +34,6 @@ let currentWeather;
 const bodyElement = $('.js-body');
 const loaderElement = $('.js-loader');
 const weatherPanelElement = $('.js-weather-panel');
-const temperatureContainerImageElement = $('.js-temperature-container-image');
 const temperatureElement = $('.js-temperature');
 const unitElements = $('.js-unit');
 const cityElement = $('.js-city');
@@ -42,11 +42,21 @@ const currentConditionElement = $('.js-current-condition');
 const versionElement = $('.js-version');
 
 /*
+ * Skycons setup.
+ */
+
+const skycons = new window.Skycons({
+  monochrome: false,
+  resizeClear: true,
+});
+skycons.play();
+
+/*
  * Functions
  */
 
 function getDayName(date) {
-  return dayNames[new Date(date).getDay()];
+  return dayNames[new Date(date * 1000).getDay()];
 }
 
 function displayErrorMessage(message) {
@@ -57,39 +67,50 @@ function handleUnsupportedGeolocation() {
   displayErrorMessage('Geolocation is not supported by this browser');
 }
 
-function updateCurrentTemperature() {
-  const currentTemperature = (currentUnit === 'c') ? currentWeather.current.temp_c : currentWeather.current.temp_f;
-  temperatureElement.html(`${currentTemperature}&deg;`);
+function celsiusToFahrenheit(temp) {
+  return (temp * 9 / 5) + 32;
 }
 
-function updateForecast() {
+function updateCurrentTemperature() {
+  const tempInCelsius = currentWeather.currently.temperature;
+  const temp = (currentUnit === 'c') ? tempInCelsius : celsiusToFahrenheit(tempInCelsius);
+  const tempRounded = Math.round(temp);
+  temperatureElement.html(`${tempRounded}&deg;`);
+}
+
+function updateForecast(updateIcons) {
   for (let i = 0; i < daysToForecast; i += 1) {
-    const forecast = currentWeather.forecast.forecastday[i];
-    const day = (i === 0) ? 'Today' : getDayName(forecast.date);
-    const high = (currentUnit === 'c') ? forecast.day.maxtemp_c : forecast.day.maxtemp_f;
-    const low = (currentUnit === 'c') ? forecast.day.mintemp_c : forecast.day.mintemp_f;
+    const forecast = currentWeather.daily.data[i + 1];
+    const day = (i === 0) ? 'Today' : getDayName(forecast.time);
+    const highInCelsius = forecast.temperatureHigh;
+    const high = (currentUnit === 'c') ? highInCelsius : celsiusToFahrenheit(highInCelsius);
+    const highRounded = Math.round(high);
+    const lowInCelsius = forecast.temperatureLow;
+    const low = (currentUnit === 'c') ? lowInCelsius : celsiusToFahrenheit(lowInCelsius);
+    const lowRounded = Math.round(low);
     $(`.js-day-${i} .js-day`).html(day);
-    $(`.js-day-${i} .js-thumbnail`).attr({
-      title: forecast.day.condition.text,
-      src: forecast.day.condition.icon,
-    });
-    $(`.js-day-${i} .js-high`).html(`${high}&deg;`);
-    $(`.js-day-${i} .js-low`).html(`${low}&deg;`);
+    if (updateIcons) {
+      skycons.add(`js-skycon-${i}`, forecast.icon);
+    }
+    $(`.js-day-${i} .js-high`).html(`${highRounded}&deg;`);
+    $(`.js-day-${i} .js-low`).html(`${lowRounded}&deg;`);
   }
 }
 
 function handleGetWeatherSuccess(res) {
   currentWeather = res;
 
-  temperatureContainerImageElement.css('background-image', `url(${res.current.condition.icon})`);
+  skycons.add('js-skycon-current', res.currently.icon);
 
   updateCurrentTemperature();
 
-  cityElement.html(res.location.name);
-  countryElement.html(res.location.country);
-  currentConditionElement.html(res.current.condition.text);
+  // cityElement.html(res.location.name);
+  // countryElement.html(res.location.country);
+  cityElement.html('TODO');
+  countryElement.html('TODO');
+  currentConditionElement.html(res.currently.summary);
 
-  updateForecast();
+  updateForecast(true);
 
   loaderElement.addClass('hidden');
 
@@ -102,9 +123,9 @@ function handleGetWeatherError(err) {
 
 function handleGetCurrentPositionSuccess(position) {
   const { coords } = position;
-  const url = `${baseUrl}?key=${apiKey}&q=${coords.latitude},${coords.longitude}&days=${daysToForecast}`;
+  const url = `${darkSkyUrl}/${coords.latitude},${coords.longitude}?exclude=${darkSkyExclusions}&units=${darkSkyUnits}`;
 
-  $.get(url)
+  $.ajax({ url, dataType: 'jsonp' })
     .done(handleGetWeatherSuccess)
     .fail(handleGetWeatherError);
 }
@@ -127,7 +148,7 @@ function handleSupportedGeolocation() {
 function handleUnitChange(e) {
   currentUnit = e.target.value;
   updateCurrentTemperature();
-  updateForecast();
+  updateForecast(false);
 }
 
 /*

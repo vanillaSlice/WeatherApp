@@ -75,17 +75,8 @@ body {
   position: relative;
 }
 
-.temperature-container__image {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  bottom: 0;
-  left: 0;
-  opacity: 0.5;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: -1;
+.temperature-container__icon {
+  margin-right: 0.375rem;
 }
 
 .temperature-container__temperature {
@@ -141,8 +132,8 @@ body {
   vertical-align: middle;
 }
 
-.forecast-table__thumbnail {
-  height: 3rem;
+.forecast-table__skycon {
+  padding: 0.375rem;
 }
 
 .footer {
