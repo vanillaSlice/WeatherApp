@@ -37,7 +37,7 @@
 
   <main class="weather-panel hidden js-weather-panel">
     <div class="temperature-container">
-      <div class="temperature-container__image js-temperature-container-image"></div>
+      <canvas class="temperature-container__icon" id="js-skycon-current" width="64" height="64"></canvas>
       <span class="temperature-container__temperature js-temperature"></span>
       <input class="temperature-container__unit js-unit" id="celsius" type="radio" name="unit" value="c" checked>
       <label class="temperature-container__label" for="celsius">C</label>
@@ -60,7 +60,7 @@
         <tr class="forecast-table__row js-day-0">
           <td class="forecast-table__cell js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
+            <canvas id="js-skycon-0" class="forecast-table__skycon" width="36" height="36"></canvas>
           </td>
           <td class="forecast-table__cell js-high"></td>
           <td class="forecast-table__cell js-low"></td>
@@ -68,7 +68,7 @@
         <tr class="forecast-table__row js-day-1">
           <td class="forecast-table__cell js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
+            <canvas id="js-skycon-1" class="forecast-table__skycon" width="36" height="36"></canvas>
           </td>
           <td class="forecast-table__cell js-high"></td>
           <td class="forecast-table__cell js-low"></td>
@@ -76,7 +76,7 @@
         <tr class="forecast-table__row js-day-2">
           <td class="forecast-table__cell js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
+            <canvas id="js-skycon-2" class="forecast-table__skycon" width="36" height="36"></canvas>
           </td>
           <td class="forecast-table__cell js-high"></td>
           <td class="forecast-table__cell js-low"></td>
@@ -84,7 +84,7 @@
         <tr class="forecast-table__row js-day-3">
           <td class="forecast-table__cell js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
+            <canvas id="js-skycon-3" class="forecast-table__skycon" width="36" height="36"></canvas>
           </td>
           <td class="forecast-table__cell js-high"></td>
           <td class="forecast-table__cell js-low"></td>
@@ -92,7 +92,7 @@
         <tr class="forecast-table__row js-day-4">
           <td class="forecast-table__cell js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
+            <canvas id="js-skycon-4" class="forecast-table__skycon" width="36" height="36"></canvas>
           </td>
           <td class="forecast-table__cell js-high"></td>
           <td class="forecast-table__cell js-low"></td>
@@ -100,7 +100,15 @@
         <tr class="forecast-table__row js-day-5">
           <td class="forecast-table__cell js-day"></td>
           <td class="forecast-table__cell">
-            <img src="#" class="forecast-table__thumbnail js-thumbnail" alt="Forecast thumbnail">
+            <canvas id="js-skycon-5" class="forecast-table__skycon" width="36" height="36"></canvas>
+          </td>
+          <td class="forecast-table__cell js-high"></td>
+          <td class="forecast-table__cell js-low"></td>
+        </tr>
+        <tr class="forecast-table__row js-day-6">
+          <td class="forecast-table__cell js-day"></td>
+          <td class="forecast-table__cell">
+            <canvas id="js-skycon-6" class="forecast-table__skycon" width="36" height="36"></canvas>
           </td>
           <td class="forecast-table__cell js-high"></td>
           <td class="forecast-table__cell js-low"></td>
@@ -110,7 +118,7 @@
     <div class="footer">
       <span class="js-version"></span>
       <span class="footer__separator"></span>
-      Powered by <a href="https://www.apixu.com/" title="Weather API">Apixu.com</a>
+      Powered by <a href="https://darksky.net" title="Weather API">Dark Sky</a>
       <span class="footer__separator"></span>
       Made with 🎧 by <a href="https://mikelowe.xyz">Mike</a>
     </div>
@@ -118,6 +126,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
+  <script src="./scripts/skycons.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
