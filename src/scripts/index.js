@@ -106,7 +106,7 @@ function updateCurrentTemperature() {
 
 function updateForecast(updateIcons) {
   for (let i = 0; i < daysToForecast; i += 1) {
-    const forecast = currentWeather.daily.data[i + 1];
+    const forecast = currentWeather.daily.data[i];
     const day = (i === 0) ? 'Today' : getDayName(forecast.time);
     const highInCelsius = forecast.temperatureHigh;
     const high = (currentUnit === 'c') ? highInCelsius : celsiusToFahrenheit(highInCelsius);
