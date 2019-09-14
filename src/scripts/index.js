@@ -7,6 +7,7 @@ import { version } from '../../package.json';
 const darkSkyUrl = 'https://api.darksky.net/forecast/63b249ea29dd4b09ae0118ebe17b4499';
 const darkSkyExclusions = 'minutely,hourly,alerts,flags';
 const darkSkyUnits = 'si';
+const googleMapsUrls = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDWfRSVrdwP_pLYXBVDHvh3pSRYUQGFx5Y';
 const { geolocation } = navigator;
 const defaultUnit = 'c';
 const daysToForecast = 7;
@@ -67,6 +68,31 @@ function handleUnsupportedGeolocation() {
   displayErrorMessage('Geolocation is not supported by this browser');
 }
 
+function handleGetLocationNameSuccess(res) {
+  res.results[0].address_components.forEach((address) => {
+    address.types.forEach((type) => {
+      switch (type) {
+        case 'postal_town':
+        case 'locality':
+          cityElement.html(address.long_name);
+          break;
+        case 'country':
+          countryElement.html(address.long_name);
+          break;
+        default:
+          break;
+      }
+    });
+  });
+}
+
+function getLocationName(coords) {
+  const url = `${googleMapsUrls}&latlng=${coords.latitude},${coords.longitude}`;
+
+  $.get(url)
+    .done(handleGetLocationNameSuccess);
+}
+
 function celsiusToFahrenheit(temp) {
   return (temp * 9 / 5) + 32;
 }
@@ -104,10 +130,6 @@ function handleGetWeatherSuccess(res) {
 
   updateCurrentTemperature();
 
-  // cityElement.html(res.location.name);
-  // countryElement.html(res.location.country);
-  cityElement.html('TODO');
-  countryElement.html('TODO');
   currentConditionElement.html(res.currently.summary);
 
   updateForecast(true);
@@ -117,17 +139,23 @@ function handleGetWeatherSuccess(res) {
   weatherPanelElement.addClass('fade-in').removeClass('hidden');
 }
 
-function handleGetWeatherError(err) {
-  displayErrorMessage(err.responseJSON.error.message);
+function handleGetWeatherError() {
+  displayErrorMessage('Could not retrieve weather data');
 }
 
-function handleGetCurrentPositionSuccess(position) {
-  const { coords } = position;
+function getWeather(coords) {
   const url = `${darkSkyUrl}/${coords.latitude},${coords.longitude}?exclude=${darkSkyExclusions}&units=${darkSkyUnits}`;
 
   $.ajax({ url, dataType: 'jsonp' })
     .done(handleGetWeatherSuccess)
     .fail(handleGetWeatherError);
+}
+
+function handleGetCurrentPositionSuccess(position) {
+  const { coords } = position;
+
+  getLocationName(coords);
+  getWeather(coords);
 }
 
 function handleGetCurrentPositionError(err) {
