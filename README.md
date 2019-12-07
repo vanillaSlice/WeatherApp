@@ -1,7 +1,7 @@
 # Weather App
 
 [![Latest Release](https://img.shields.io/github/release/vanillaSlice/WeatherApp.svg)](https://github.com/vanillaSlice/WeatherApp/releases/latest)
-[![Build Status](https://img.shields.io/travis/vanillaSlice/WeatherApp/master.svg)](https://travis-ci.org/vanillaSlice/WeatherApp)
+[![Build Status](https://img.shields.io/travis/com/vanillaSlice/WeatherApp/master.svg)](https://travis-ci.com/vanillaSlice/WeatherApp)
 [![License](https://img.shields.io/github/license/vanillaSlice/WeatherApp.svg)](LICENSE)
 
 *Intermediate Front End Development Project for FreeCodeCamp.*
